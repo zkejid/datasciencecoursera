@@ -36,7 +36,7 @@ run_analysis <- function() {
   # name columns according to feature names, last two columns are named manually
   names(features) <- c(feature_names, "activity_index", "subject")
   
-  features %>%
+  result <- features %>%
     # extract mean and std features, save activity and subject
     select(activity_index, subject, contains("mean()"), contains("std()")) %>%
     # replace activity indexes with activity names
@@ -51,7 +51,8 @@ run_analysis <- function() {
     ) %>%
     # produce new data set according to course project task
     group_by(feature_name, activity_label, subject) %>%
-    summarize(average_feature_value = mean(feature_value)) %>%
-    # save data set to file
-    write_delim(output_file)
+    summarize(average_feature_value = mean(feature_value)) 
+  
+  # save data set to file
+  write.table(result, file = output_file, row.names = F)
 }
