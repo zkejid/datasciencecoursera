@@ -194,24 +194,24 @@ summary {
 <li><code>LICENSE</code> - MIT license.</li>
 <li><code>datasciencecoursera.Rproj</code> - R Studio project file.</li>
 </ul>
-<p>Script expects following input data to be in project directory:</p>
+<p>Project work is based on <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">Human Activity Recognition Using Smartphones Data Set</a>. Script expects following input data to be in project directory to produce output result:</p>
 <ul>
-<li><code>UCI HAR Dataset/activity_labels.txt</code></li>
-<li><code>UCI HAR Dataset/features.txt</code></li>
-<li><code>UCI HAR Dataset/test/subject_test.txt</code></li>
-<li><code>UCI HAR Dataset/test/X_test.txt</code></li>
-<li><code>UCI HAR Dataset/test/y_test.txt</code></li>
-<li><code>UCI HAR Dataset/train/subject_train.txt</code></li>
-<li><code>UCI HAR Dataset/train/X_train.txt</code></li>
-<li><code>UCI HAR Dataset/train/y_train.txt</code></li>
+<li><code>UCI HAR Dataset/activity_labels.txt</code> - activity names paired with their indices.</li>
+<li><code>UCI HAR Dataset/features.txt</code> - names of all features extracted from RAW data in original HAR research.</li>
+<li><code>UCI HAR Dataset/test/subject_test.txt</code> - test part of data on subjects of activities</li>
+<li><code>UCI HAR Dataset/test/X_test.txt</code> - test part of data on feature values</li>
+<li><code>UCI HAR Dataset/test/y_test.txt</code> - test part of activities data</li>
+<li><code>UCI HAR Dataset/train/subject_train.txt</code> - train part of data on subjects of activities</li>
+<li><code>UCI HAR Dataset/train/X_train.txt</code> - train part of data on feature values</li>
+<li><code>UCI HAR Dataset/train/y_train.txt</code> - train part of activities data</li>
 </ul>
 <p>Script produces file <code>analysis_result.txt</code> in a project directory.</p>
 </div>
 <div id="script-overview" class="section level3">
 <h3>Script overview</h3>
-<p>Script combines data from following sources. First part of data set is a features. Second part of set is activity data, which goes in separate file. Third part of set is subject data, which also goes in separate file. Script combains these three parts of set in a similar way for both test and train data folders and than unites test and train data in one set. Now data set satisfies first requirement:</p>
+<p>Script combines data from following sources. First part of data set is a features. Second part of set is activity data, which goes in separate file. Third part of set is subject data, which also goes in separate file. Script combines these three parts of set in a similar way for both test and train data folders and than unites test and train data in one set. Now data set satisfies first requirement:</p>
 <pre><code>Merges the training and the test sets to create one data set.</code></pre>
-<p>Column with activity data transforms from indexed form to named activities. index -&gt; name transformation performed according to the dictionary <code>activity_labels.txt</code>. Names for feature column are provided by file <code>features.txt</code>. Name for activity data column is hard coded into script: <em>activity_label</em>. Name for subject data column hard coded as well: <em>subject</em>. Now data set satisfies third and forth requirements:</p>
+<p>Column with activity data transforms from indexed form to named activities. index-&gt;name transformation performed according to the dictionary <code>activity_labels.txt</code>. Names for feature columns are provided by file <code>features.txt</code>. Name for activity data column is hard coded into script: <em>activity_label</em>. Name for subject data column hard coded as well: <em>subject</em>. Now data set satisfies third and forth requirements:</p>
 <pre><code>Uses descriptive activity names to name the activities in the data set</code></pre>
 <pre><code>Appropriately labels the data set with descriptive variable names. </code></pre>
 <p>Script filters columns by name to select only mean and std features. It can be easiely done with name filtering by patterns <code>mean()</code> and <code>std()</code>. These patterns are specified in <code>feature_info.txt</code> file as labels for mean and standart deviation features. Activity data column and subject data column are preserved as well. Now data set satisfies second requirement:</p>
